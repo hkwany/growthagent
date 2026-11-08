@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package growthagent.rpc;
+
+// Minimal RPC surface for internal tool dispatch.  In production the tools
+// run as a separate process and the agent calls them over gRPC; the local
+// fallback (LocalToolService) is used in tests and single-process deploys.
+service ToolService {
+  rpc Call (ToolRequest) returns (ToolResponse);
+}
+
+message ToolRequest {
+  string name = 1;
+  string arguments_json = 2;  // JSON object of keyword arguments
+}
+
+message ToolResponse {
+  string result_json = 1;     // JSON-encoded tool result (may be {"error": ...})
+}

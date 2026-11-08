@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: growthagent
+  labels:
+    app: growthagent
+spec:
+  type: ClusterIP
+  selector:
+    app: growthagent
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8000
+      protocol: TCP

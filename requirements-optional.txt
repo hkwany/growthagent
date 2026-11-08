@@ -1,0 +1,16 @@
+# Optional dependencies — everything here is lazy-imported with a fallback.
+# The core (agent loop, tools, eval, bandit, memory, rag) needs only numpy.
+
+# Web API (growthagent.app.main)
+fastapi>=0.110
+uvicorn[standard]>=0.29
+
+# More accurate token counting (falls back to a heuristic otherwise)
+tiktoken>=0.6
+
+# Faster ANN vector search (falls back to numpy brute force otherwise)
+hnswlib>=0.8
+
+# gRPC tool dispatch (LocalToolService works in-process without these)
+grpcio>=1.62
+grpcio-tools>=1.62
